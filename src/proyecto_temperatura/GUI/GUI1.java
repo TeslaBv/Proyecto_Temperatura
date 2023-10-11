@@ -21,7 +21,6 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-
 /**
  *
  * @author Fabian
@@ -192,46 +191,45 @@ public class GUI1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-        double media = week.CalcularMedia();
-        double mediana = week.CalcularMediana();
-        String moda = week.CalcularModa();
-        double minima = week.MinimaTemperatura();
-        double maxima = week.MaximaTemperatura();
-        tableModel.setValueAt(media,0,0);
-        tableModel.setValueAt(mediana,0,1);
-        tableModel.setValueAt(moda,0,2);
-        tableModel.setValueAt(minima,0,3);
-        tableModel.setValueAt(maxima,0,4);
+        if (contador == 7) {
+            DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+            double media = week.CalcularMedia();
+            double mediana = week.CalcularMediana();
+            String moda = week.CalcularModa();
+            double minima = week.MinimaTemperatura();
+            double maxima = week.MaximaTemperatura();
+            tableModel.setValueAt(media, 0, 0);
+            tableModel.setValueAt(mediana, 0, 1);
+            tableModel.setValueAt(moda, 0, 2);
+            tableModel.setValueAt(minima, 0, 3);
+            tableModel.setValueAt(maxima, 0, 4);
 
-        List<Dia> listadias = week.getListaDias();
-        DefaultCategoryDataset datos = new DefaultCategoryDataset();
-        for (int i=0;i<listadias.size();i++){
-            Dia day = listadias.get(i);
-            double temperaturaMañana = day.getTemperaturaMañana();
-            double temperaturaMedioDia = day.getTemperaturaMedioDia();
-            double temperaturaNoche = day.getTemperaturaNoche();
-            List<Double> temperaturas = new ArrayList<>();
-            double temp =(temperaturaMañana+temperaturaMedioDia+temperaturaNoche)/3;
-            datos.setValue(temp, "Grados","Dia "+(i+1));
+            List<Dia> listadias = week.getListaDias();
+            DefaultCategoryDataset datos = new DefaultCategoryDataset();
+            for (int i = 0; i < listadias.size(); i++) {
+                Dia day = listadias.get(i);
+                double temperaturaMañana = day.getTemperaturaMañana();
+                double temperaturaMedioDia = day.getTemperaturaMedioDia();
+                double temperaturaNoche = day.getTemperaturaNoche();
+                List<Double> temperaturas = new ArrayList<>();
+                double temp = (temperaturaMañana + temperaturaMedioDia + temperaturaNoche) / 3;
+                datos.setValue(temp, "Grados", "Dia " + (i + 1));
+            }
+
+            JFreeChart graficoBar = ChartFactory.createBarChart3D("Temperaturas", "Dias de la semana", "Grados", datos, PlotOrientation.VERTICAL, true, true, false);
+            ChartPanel panel = new ChartPanel(graficoBar);
+            panel.setMouseWheelEnabled(true);
+            panel.setPreferredSize(new Dimension(400, 200));
+            jPanel2.setLayout(new BorderLayout());
+            jPanel2.add(panel, BorderLayout.NORTH);
+
+            pack();
+            repaint();
+        }else{
+            JOptionPane.showMessageDialog(null,"Aun no ha ingresado los 7 dias");
         }
-        
-        
-        
-        
-        JFreeChart graficoBar = ChartFactory.createBarChart3D("Temperaturas","Dias de la semana","Grados",datos,PlotOrientation.VERTICAL,true,true,false);
-        ChartPanel panel = new ChartPanel(graficoBar);
-        panel.setMouseWheelEnabled(true);
-        panel.setPreferredSize(new Dimension(400,200));
-        jPanel2.setLayout(new BorderLayout());
-        jPanel2.add(panel,BorderLayout.NORTH);
-        
-        
-        pack();
-        repaint();
-        
+
         //Grafico();
-        
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -260,8 +258,9 @@ public class GUI1 extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-    int contador=0;
+    int contador = 0;
     Semana week = new Semana();
+
     /**
      * @param args the command line arguments
      */
@@ -331,7 +330,7 @@ public class GUI1 extends javax.swing.JFrame {
     grafico.setVisible(true);
     grafico.setLocationRelativeTo(null);
 }
-*/
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
