@@ -232,7 +232,7 @@ public class GUI1 extends javax.swing.JFrame {
         //Grafico();
 
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    int contDias = 1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Botón para agregar los datos a la clase Dia
         if (!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty() && !jTextField3.getText().isEmpty()) {
@@ -247,6 +247,9 @@ public class GUI1 extends javax.swing.JFrame {
                     jTextField1.setText("");
                     jTextField2.setText("");
                     jTextField3.setText("");
+                    
+                    JOptionPane.showMessageDialog(null, "Dia: "+contDias);
+                    contDias++;
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos.");
                 }
