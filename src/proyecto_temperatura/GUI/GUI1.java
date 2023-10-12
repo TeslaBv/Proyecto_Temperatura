@@ -225,8 +225,8 @@ public class GUI1 extends javax.swing.JFrame {
 
             pack();
             repaint();
-        }else{
-            JOptionPane.showMessageDialog(null,"Aun no ha ingresado los 7 dias");
+        } else {
+            JOptionPane.showMessageDialog(null, "Aun no ha ingresado los 7 dias");
         }
 
         //Grafico();
@@ -235,29 +235,33 @@ public class GUI1 extends javax.swing.JFrame {
     int contDias = 1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Botón para agregar los datos a la clase Dia
-        if (!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty() && !jTextField3.getText().isEmpty()) {
-            if (contador < 7) {
-                try {
-                    Dia day = new Dia();
-                    day.setTemperaturaMañana(Double.parseDouble(jTextField1.getText()));
-                    day.setTemperaturaMedioDia(Double.parseDouble(jTextField2.getText()));
-                    day.setTemperaturaNoche(Double.parseDouble(jTextField3.getText()));
-                    contador++;
-                    week.AgregarDia(day);
-                    jTextField1.setText("");
-                    jTextField2.setText("");
-                    jTextField3.setText("");
-                    
-                    JOptionPane.showMessageDialog(null, "Dia: "+contDias);
-                    contDias++;
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos.");
+        try {
+            if (!jTextField1.getText().isEmpty() && !jTextField2.getText().isEmpty() && !jTextField3.getText().isEmpty()) {
+                if (contador < 7) {
+                    try {
+                        Dia day = new Dia();
+                        day.setTemperaturaMañana(Double.parseDouble(jTextField1.getText()));
+                        day.setTemperaturaMedioDia(Double.parseDouble(jTextField2.getText()));
+                        day.setTemperaturaNoche(Double.parseDouble(jTextField3.getText()));
+                        contador++;
+                        week.AgregarDia(day);
+                        jTextField1.setText("");
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+
+                        JOptionPane.showMessageDialog(null, "Dia: " + contDias);
+                        contDias++;
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores numéricos válidos.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingresó el máximo número de días\n(7 días -> Una semana)");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Ingresó el máximo número de días\n(7 días -> Una semana)");
+                JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ingrese datos validos");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
